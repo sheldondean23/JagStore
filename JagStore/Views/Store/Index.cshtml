@@ -1,0 +1,55 @@
+﻿@model IEnumerable<JagStore.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Store</h2>
+
+<p>
+    @*@Html.RenderPartial("_search", SearchModel)*@
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @{
+                switch (item.ProductName)
+                {
+                    case "Jag T-Shirt":
+                        <img src="~/Pictures/Shirt.gif" alt="Jag T-Shirt" height="100" width="100"/>
+                        break;
+                    case "Jag Shorts":
+                        <img src="~/Pictures/Shorts.gif" alt="Jag Shorts" height="100" width="100" />
+                        break;
+                    case "Jag Polo":
+                        <img src="~/Pictures/Polo.gif" alt="Jag Shorts" height="100" width="100" />
+                        break;
+                    case "Hoodie":
+                        <img src="~/Pictures/Hoodie.gif" alt="Jag Hoodie" height="100" width="100" />
+                        break;
+                    default:
+                        <img src="~/Pictures/CanNotBeFound.gif" alt="Image Not Found" height="100" width="100" />
+                        break;
+                }
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ProductID })
+        </td>
+    </tr>
+}
+
+</table>

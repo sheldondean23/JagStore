@@ -1,0 +1,52 @@
+﻿@model JagStore.ProductDiscription
+@*@model IQueryable<JagStore.ProductDiscription>*@
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductDiscription</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.Color, new SelectList(Model.Color, Model.Color, Model.Color,null), "-- Select Color --")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DropDownListFor(model => model.Size, new SelectList(Model.Size, Model.Size, Model.Size, null), "-- Select Color --")
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.RetailPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RetailPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DiscriptionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

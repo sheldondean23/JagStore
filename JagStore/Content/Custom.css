@@ -1,0 +1,13 @@
+﻿body 
+{
+     background-image: url("/Pictures/newjaglarge.jpg");
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-position: top; 
+     background-size:cover;
+}
+
+div.container.body-content
+{
+    background-color:rgba(255, 255, 255, .6);
+}
