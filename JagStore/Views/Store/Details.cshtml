@@ -1,12 +1,11 @@
-﻿@model JagStore.ProductDiscription
-@*@model IQueryable<JagStore.ProductDiscription>*@
+﻿@*@model JagStore.ProductDiscription*@
+@model IEnumerable<JagStore.ProductDiscription>
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@</h2>
 
 <div>
     <h4>ProductDiscription</h4>
@@ -17,7 +16,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Product.ProductName)
+            @
+            @*@Html.DisplayFor(model => model.Product.ProductName)*@
         </dd>
 
         <dt>
@@ -25,7 +25,7 @@
         </dt>
 
         <dd>
-            @Html.DropDownListFor(model => model.Color, new SelectList(Model.Color, Model.Color, Model.Color,null), "-- Select Color --")
+            @*@Html.DropDownListFor(model => model.Color, (SelectList)ViewBag.color, "-- Select Color--", new  { id = "colorSelect", @class = "form-control"})*@ 
         </dd>
 
         <dt>
@@ -33,20 +33,28 @@
         </dt>
 
         <dd>
-            @Html.DropDownListFor(model => model.Size, new SelectList(Model.Size, Model.Size, Model.Size, null), "-- Select Color --")
+            @*@Html.DropDownListFor(model => model.Size, (SelectList)ViewBag.size, "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })*@
         </dd>
-        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityInStock)
+        </dt>
+
+        <dd>
+          @*  @Html.DisplayFor(model => model.QuantityInStock)*@
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.RetailPrice)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RetailPrice)
+            @*@Html.DisplayFor(model => model.RetailPrice)*@
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DiscriptionID }) |
+    <button type="submit">Add to Cart</button> |
     @Html.ActionLink("Back to List", "Index")
 </p>

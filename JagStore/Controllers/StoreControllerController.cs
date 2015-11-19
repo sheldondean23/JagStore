@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JagStore.Models;
+using NHibernate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +10,9 @@ namespace JagStore.Controllers
 {
     public class StoreController : Controller
     {
+        public Cart[] cart;
         private JagStoreContext db = new JagStoreContext();
+        private readonly ISession _session;
         // GET: Store
         public ActionResult Index()
         {
@@ -19,24 +23,45 @@ namespace JagStore.Controllers
         // GET: Store/Details/5
         public ActionResult Details(Guid id)
         {
-            var model =
-                               from products in db.ProductDiscriptions
-                               where products.ProductID.Equals(id)
-                               select products;
+          
+            var name =
+                               from products in db.Products
+                               where products.ProductID == id
+                               select products.ProductName;
 
-            return View(model);
+            var color =
+                               from products in db.ProductDiscriptions
+                               where products.ProductID == id
+                               select products.Color;
+            var size =
+                               from products in db.ProductDiscriptions
+                               where products.ProductID == id
+                               select products.Size;
+
+            ViewBag.color = color.ToList();
+            ViewBag.size = size.ToList();
+            ViewBag.name = name.ToList();
+
+            return View(new aProductsDetails());
         }
 
         // POST: Store/AddToCart
         [HttpPost]
-        public ActionResult AddToCart(string id)
+        public ActionResult AddToCart(aProductsDetails selectedItem)
         {
 
             try
             {
-                // TODO: Add insert logic here
+                cart[cart.Count()] = new Cart();
+                cart[cart.Count()].DiscriptionID = selectedItem.DiscriptionID;
+                cart[cart.Count()].ProductID = selectedItem.ProductID;
+                cart[cart.Count()].Color = selectedItem.Color;
+                cart[cart.Count()].Size = selectedItem.Color;
+                cart[cart.Count()].RetailPrice = selectedItem.RetailPrice;
+                cart[cart.Count()].Product.ProductID = selectedItem.Product.ProductID;
+                cart[cart.Count()].Product.ProductName = selectedItem.Product.ProductName;
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Cart");
             }
             catch
             {
