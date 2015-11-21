@@ -1,5 +1,4 @@
 ﻿@using System.Web.Mvc.Html
-@Scripts.Render("~/Scripts/detailsDropDownList.js")
 @model JagStore.Models.aProductsDetails
 
 @{
@@ -50,6 +49,7 @@
         </dd>
 
     </dl>
+    @section Scripts {<script src="~/Scripts/detailsDropDownList.js"></script>}
 </div>
 <p>
     <button type="submit">Add to Cart</button> |

@@ -125,19 +125,19 @@ namespace JagStore.Controllers
             }
         }
 
-        [Route("getSizeList/{id?}"), HttpGet]
-        public ActionResult getSizeList(string id)
+        [Route("getSizeList/{id?}/{color?}"), HttpGet]
+        public ActionResult getSizeList(string id, string color)
         {
             var ID = new Guid(id);
-            var list = db.ProductDiscriptions
-                         .Where(pd => pd.ProductID == ID)
+            var size = db.ProductDiscriptions
+                         .Where(pd => pd.ProductID == ID && pd.Color == color)
                          .Select(pd => new SelectListItem
                          {
                              Value = pd.DiscriptionID.ToString(),
-                             Text = pd.Color
+                             Text = pd.Size
                          }).ToList();
 
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(size, JsonRequestBehavior.AllowGet);
         }
     }
 }
