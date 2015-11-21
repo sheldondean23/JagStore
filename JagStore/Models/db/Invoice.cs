@@ -56,9 +56,6 @@ namespace JagStore
         public decimal ShippingCost { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal Tax { get; set; }
-
-        [Column(TypeName = "money")]
         public decimal TotalDue { get; set; }
 
         public virtual Person Person { get; set; }

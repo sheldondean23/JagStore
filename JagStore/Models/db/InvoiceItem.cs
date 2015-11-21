@@ -16,11 +16,8 @@ namespace JagStore
 
         public int Quantity { get; set; }
 
-        [Column(TypeName = "smallmoney")]
-        public decimal SalePrice { get; set; }
-
         public virtual Invoice Invoice { get; set; }
 
-        public virtual Product Product1 { get; set; }
+        public virtual ProductDiscription ProductDiscription { get; set; }
     }
 }

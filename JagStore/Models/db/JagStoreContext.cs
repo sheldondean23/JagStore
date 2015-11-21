@@ -47,31 +47,17 @@ namespace JagStore
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Invoice>()
-                .Property(e => e.Tax)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Invoice>()
                 .Property(e => e.TotalDue)
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Invoice>()
-                .HasMany(e => e.InvoiceItems)
-                .WithRequired(e => e.Invoice)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<InvoiceItem>()
-                .Property(e => e.SalePrice)
-                .HasPrecision(10, 4);
+                .HasMany(e => e.InvoiceItems);
+                //.WithRequired(e => e.Invoice)
+                //.WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Invoices)
                 .WithRequired(e => e.Person)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product>()
-                .HasMany(e => e.InvoiceItems)
-                .WithRequired(e => e.Product1)
-                .HasForeignKey(e => e.Product)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ProductDiscription>()
@@ -81,6 +67,12 @@ namespace JagStore
             modelBuilder.Entity<ProductDiscription>()
                 .Property(e => e.RetailPrice)
                 .HasPrecision(10, 4);
+
+            modelBuilder.Entity<ProductDiscription>()
+                .HasMany(e => e.InvoiceItems)
+                .WithRequired(e => e.ProductDiscription)
+                .HasForeignKey(e => e.Product)
+                .WillCascadeOnDelete(false);
         }
     }
 }
