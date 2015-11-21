@@ -1,14 +1,14 @@
 ﻿$(document).ready(function () {
-    $('#organizationTypeSelect').change(function () {
-        var url = $("#organizationListWrapper").data("get-organization-list-url") + '/' + $("#organizationTypeSelect").val();
-        $('#facilityNameSelect').empty();
+    $('#colorSelect').change(function () {
+        var url = $("#fill").data("get-size-list-url") + '/' + $("#colorSelect").val();
+        $('#sizeSelect').empty();
         $.ajax({
             type: 'GET',
             url: url,
             dataType: 'json',
-            success: function (organizations) {
-                $.each(organizations, function (i, organization) {
-                    $("#facilityNameSelect").append('<option value="' + organization.Value + '">' + organization.Text + '</option>');
+            success: function (sizes) {
+                $.each(sizes, function (i, size) {
+                    $("#sizeSelect").append('<option value="' + size.Value + '">' + size.Text + '</option>');
                 });
             },
             error: function (ex) {

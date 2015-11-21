@@ -3,16 +3,25 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using ProductDiscription = JagStore.ProductDiscription;
 
 namespace JagStore.Controllers
 {
     public class StoreController : Controller
     {
         public Cart[] cart;
+        public List<Cart> cartList = new List<Cart>();
         private JagStoreContext db = new JagStoreContext();
         private readonly ISession _session;
+
+        //public StoreController(ISession session)
+        //{
+        //    _session = session;
+        //}
+        //public StoreController()
+        //{
+        //}
         // GET: Store
         public ActionResult Index()
         {
@@ -23,24 +32,27 @@ namespace JagStore.Controllers
         // GET: Store/Details/5
         public ActionResult Details(Guid id)
         {
-          
+            //var colors = _session.QueryOver<ProductDiscription>().Where(pd => pd.ProductID == id).List()
+            //                                     .Select(pd => new SelectListItem
+            //                                     {
+            //                                         Value = pd.DiscriptionID.ToString(),
+            //                                         Text = pd.Color
+            //                                     }).ToList();
+            var colors = db.ProductDiscriptions
+                         .Where(pd => pd.ProductID == id)
+                         .Select(pd => new SelectListItem
+                         {
+                             Value = pd.DiscriptionID.ToString(),
+                             Text = pd.Color
+                         }).ToList();
+
             var name =
-                               from products in db.Products
-                               where products.ProductID == id
-                               select products.ProductName;
+                            (from products in db.Products
+                            where products.ProductID == id     
+                            select products.ProductName).Single();
 
-            var color =
-                               from products in db.ProductDiscriptions
-                               where products.ProductID == id
-                               select products.Color;
-            var size =
-                               from products in db.ProductDiscriptions
-                               where products.ProductID == id
-                               select products.Size;
-
-            ViewBag.color = color.ToList();
-            ViewBag.size = size.ToList();
-            ViewBag.name = name.ToList();
+            Session.Add("color", colors);
+            Session.Add("name", name);
 
             return View(new aProductsDetails());
         }
@@ -111,6 +123,21 @@ namespace JagStore.Controllers
             {
                 return View();
             }
+        }
+
+        [Route("getSizeList/{id?}"), HttpGet]
+        public ActionResult getSizeList(string id)
+        {
+            var ID = new Guid(id);
+            var list = db.ProductDiscriptions
+                         .Where(pd => pd.ProductID == ID)
+                         .Select(pd => new SelectListItem
+                         {
+                             Value = pd.DiscriptionID.ToString(),
+                             Text = pd.Color
+                         }).ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -31,10 +31,11 @@ namespace JagStore.Models
 
         private Product[] converter(DataSet DS)
         {
-
+            ProductDiscription[] p = null;
             for (int i = 0; i < DS.Tables[0].Rows.Count; i++)
             {
-
+                p[0] = new ProductDiscription();
+                p[0].ProductID = DS.Tables[0].Rows[i].Field<Guid>("ProductID");
             }
 
             return null;

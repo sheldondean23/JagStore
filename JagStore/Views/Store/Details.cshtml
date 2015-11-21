@@ -1,11 +1,15 @@
-﻿@*@model JagStore.ProductDiscription*@
-@model IEnumerable<JagStore.ProductDiscription>
+﻿@using System.Web.Mvc.Html
+@Scripts.Render("~/Scripts/detailsDropDownList.js")
+@model JagStore.Models.aProductsDetails
 
 @{
-    ViewBag.Title = "Details";
+    string name = (string)Session["name"];
+    List<SelectListItem> sizeList = new List<SelectListItem>();
 }
 
-<h2>@</h2>
+@using (Html.BeginForm("AddToCart", "Cart", new { selectedItem = Model }))
+{
+<h2>@name</h2>
 
 <div>
     <h4>ProductDiscription</h4>
@@ -16,8 +20,7 @@
         </dt>
 
         <dd>
-            @
-            @*@Html.DisplayFor(model => model.Product.ProductName)*@
+           @name
         </dd>
 
         <dt>
@@ -25,7 +28,7 @@
         </dt>
 
         <dd>
-            @*@Html.DropDownListFor(model => model.Color, (SelectList)ViewBag.color, "-- Select Color--", new  { id = "colorSelect", @class = "form-control"})*@ 
+                @Html.DropDownListFor(model => model.Color, (List<SelectListItem>)Session["color"], "-- Select Color--", new { id = "colorSelect", @class = "form-control" })
         </dd>
 
         <dt>
@@ -33,19 +36,13 @@
         </dt>
 
         <dd>
-            @*@Html.DropDownListFor(model => model.Size, (SelectList)ViewBag.size, "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })*@
-        </dd>
+            <div id="fill" data-get-size-list-url="@Url.Action("getSizeList")">
+                @Html.DropDownListFor(model => model.Size, sizeList, "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })
+            </div>
+         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.QuantityInStock)
-        </dt>
-
-        <dd>
-          @*  @Html.DisplayFor(model => model.QuantityInStock)*@
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RetailPrice)
+            @*@Html.DisplayNameFor(model => model.RetailPrice)*@
         </dt>
 
         <dd>
@@ -58,3 +55,4 @@
     <button type="submit">Add to Cart</button> |
     @Html.ActionLink("Back to List", "Index")
 </p>
+}

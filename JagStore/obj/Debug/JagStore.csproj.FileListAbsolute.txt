@@ -64,6 +64,10 @@ c:\users\sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\Mic
 c:\users\sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\Microsoft.Owin.Security.Google.xml
 c:\users\sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\Microsoft.Owin.Security.Twitter.xml
 c:\users\sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-c:\users\sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\obj\Debug\JagStore.csprojResolveAssemblyReference.cache
 c:\users\sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\obj\Debug\JagStore.dll
 c:\users\sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\obj\Debug\JagStore.pdb
+C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\Iesi.Collections.dll
+C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\NHibernate.dll
+C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\Iesi.Collections.xml
+C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\NHibernate.xml
+C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\obj\Debug\JagStore.csprojResolveAssemblyReference.cache
