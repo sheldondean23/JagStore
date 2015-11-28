@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f9f8ffa621b34dd58f4674596979130d" Name="Diagram1">
+        <EntityTypeShape EntityType="JagStoreModel.Mapping.Company" Width="1.5" PointX="1.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JagStoreModel.Mapping.Invoice" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JagStoreModel.Mapping.InvoiceItem" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JagStoreModel.Mapping.Person" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="JagStoreModel.Mapping.Product" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JagStoreModel.Mapping.ProductDiscription" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JagStoreModel.Mapping.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="JagStoreModel.Mapping.FK__Person__CompanyI__1367E606" ManuallyRouted="false" />
+        <AssociationConnector Association="JagStoreModel.Mapping.FK__Invoice__UserID__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="JagStoreModel.Mapping.FK__InvoiceIt__Invoi__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="JagStoreModel.Mapping.FK__InvoiceIt__Produ__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="JagStoreModel.Mapping.FK__ProductDi__Produ__5CD6CB2B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

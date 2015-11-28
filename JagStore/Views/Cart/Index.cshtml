@@ -1,0 +1,46 @@
+﻿@model IEnumerable<JagStore.InvoiceItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductDiscription.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDiscription.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceItemID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.InvoiceItemID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceItemID })
+            </td>
+        </tr>
+    }
+
+</table>

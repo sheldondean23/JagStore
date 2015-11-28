@@ -1,5 +1,5 @@
 ﻿@using System.Web.Mvc.Html
-@model JagStore.Models.aProductsDetails
+@model JagStore.InvoiceItem
 
 @{
     string name = (string)Session["name"];
@@ -8,51 +8,58 @@
 
 @using (Html.BeginForm("AddToCart", "Cart", new { selectedItem = Model }))
 {
+    @Html.AntiForgeryToken()
 <h2>@name</h2>
 
-<div>
-    <h4>ProductDiscription</h4>
+<div class="form-horizontal">
+    <h4>Product Discription</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Product.ProductName)
-        </dt>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductDiscription.Product.ProductName, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @name
+        </div>
+    </div>
 
-        <dd>
-           @name
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductDiscription.Color, "Color", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ProductDiscription.Color, (List<SelectListItem>)Session["color"], "-- Select Color--", new { id = "colorSelect", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProductDiscription.Color, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductDiscription.Size, "Size", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" id="fill" data-get-size-list-url="@Url.Action("getSizeList")">
+            @Html.DropDownListFor(model => model.ProductDiscription.Size, sizeList, "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProductDiscription.Size, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-                @Html.DropDownListFor(model => model.Color, (List<SelectListItem>)Session["color"], "-- Select Color--", new { id = "colorSelect", @class = "form-control" })
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, "Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Size)
-        </dt>
-
-        <dd>
-            <div id="fill" data-get-size-list-url="@Url.Action("getSizeList")">
-                @Html.DropDownListFor(model => model.Size, sizeList, "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })
-            </div>
-         </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.RetailPrice)*@
-        </dt>
-
-        <dd>
-            @*@Html.DisplayFor(model => model.RetailPrice)*@
-        </dd>
-
-    </dl>
-    @section Scripts {<script src="~/Scripts/detailsDropDownList.js"></script>}
-</div>
-<p>
-    <button type="submit">Add to Cart</button> |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <div class="form-group" id="show" data-get-price-url="@Url.Action("getPrice")">
+        @Html.LabelFor(model => model.ProductDiscription.RetailPrice, "Price", htmlAttributes: new {id = "showPrice", @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.ProductDiscription.RetailPrice)
+        </div>
+    </div>
+    
+            @section Scripts {
+                <script src="~/Scripts/detailsDropDownList.js"></script>
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+        <p>
+            <button type="submit">Add to Cart</button> |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
 }

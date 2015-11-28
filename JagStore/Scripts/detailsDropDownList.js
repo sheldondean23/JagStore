@@ -18,3 +18,22 @@
         return false;
     });
 });
+
+//$(document).ready(function () {
+//    $('#sizeSelect').change(function () {
+//        var url = $("#show").data("get-size-list-url") + '/' + $("#sizeSelect").val();
+//        $('#showPrice').empty();
+//        $.ajax({
+//            type: 'GET',
+//            url: url,
+//            dataType: 'json',
+//            success: function (price) {
+//                $("showPrice").change(price.Text);
+//            },
+//            error: function (ex) {
+//                //console.log('Failed to retrieve organizations.' + ex);
+//            }
+//        });
+//        return false;
+//    });
+//});

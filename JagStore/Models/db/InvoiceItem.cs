@@ -8,7 +8,7 @@ namespace JagStore
 
     public partial class InvoiceItem
     {
-        public int InvoiceItemID { get; set; }
+        public Guid InvoiceItemID { get; set; }
 
         public int InvoiceID { get; set; }
 

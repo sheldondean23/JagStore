@@ -10,12 +10,24 @@ namespace JagStore.Models
 {
     public class dbConnector
     {
-        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["JagStoreDBContext"].ConnectionString);
+        private SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["JagStoreContext"].ConnectionString);
 
-        public Product[] Distinct()
+        public void AddToCart(Guid InvoiceItemID,Guid Product,int Quantity)
         {
 
+            connection.Open();
+            SqlCommand comm = new SqlCommand("addItems", connection);
+            comm.CommandType = CommandType.StoredProcedure;
+            comm.Parameters.Add(new SqlParameter("@InvoiceItemID", SqlDbType.UniqueIdentifier)).Value = InvoiceItemID;
+            comm.Parameters.Add(new SqlParameter("@Product", SqlDbType.UniqueIdentifier)).Value = Product;
+            comm.Parameters.Add(new SqlParameter("@Quantity", SqlDbType.Int)).Value = Quantity;
+            SqlDataAdapter da = new SqlDataAdapter(comm);
+            connection.Close();
+            
+        }
 
+        private Product[] converter(DataSet DS)
+        {
             DataSet ds = new DataSet();
 
             connection.Open();
@@ -27,18 +39,6 @@ namespace JagStore.Models
             connection.Close();
 
             return converter(ds);
-        }
-
-        private Product[] converter(DataSet DS)
-        {
-            ProductDiscription[] p = null;
-            for (int i = 0; i < DS.Tables[0].Rows.Count; i++)
-            {
-                p[0] = new ProductDiscription();
-                p[0].ProductID = DS.Tables[0].Rows[i].Field<Guid>("ProductID");
-            }
-
-            return null;
         }
     }
 }

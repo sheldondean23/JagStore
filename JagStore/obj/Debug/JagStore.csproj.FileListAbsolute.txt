@@ -71,3 +71,4 @@ C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\NHi
 C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\Iesi.Collections.xml
 C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\NHibernate.xml
 C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\obj\Debug\JagStore.csprojResolveAssemblyReference.cache
+C:\Users\Sheldon\documents\visual studio 2015\Projects\JagStore\JagStore\bin\log4net.xml

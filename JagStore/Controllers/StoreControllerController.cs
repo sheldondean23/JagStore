@@ -9,11 +9,9 @@ using ProductDiscription = JagStore.ProductDiscription;
 namespace JagStore.Controllers
 {
     public class StoreController : Controller
-    {
-        public Cart[] cart;
-        public List<Cart> cartList = new List<Cart>();
+    {       
         private JagStoreContext db = new JagStoreContext();
-        private readonly ISession _session;
+        //private readonly ISession _session;
 
         //public StoreController(ISession session)
         //{
@@ -32,112 +30,78 @@ namespace JagStore.Controllers
         // GET: Store/Details/5
         public ActionResult Details(Guid id)
         {
-            //var colors = _session.QueryOver<ProductDiscription>().Where(pd => pd.ProductID == id).List()
+            //var color = _session.QueryOver<ProductDiscription>().Where(pd => pd.ProductID == id).List()
             //                                     .Select(pd => new SelectListItem
             //                                     {
             //                                         Value = pd.DiscriptionID.ToString(),
             //                                         Text = pd.Color
             //                                     }).ToList();
-            var colors = db.ProductDiscriptions
-                         .Where(pd => pd.ProductID == id)
-                         .Select(pd => new SelectListItem
-                         {
-                             Value = pd.DiscriptionID.ToString(),
-                             Text = pd.Color
-                         }).ToList();
+
+            //var colors = db.ProductDiscriptions
+            //             .Where(pd => pd.ProductID == id)
+            //             .GroupBy(c => new { c.Color })
+            //             .Select(final => new SelectListItem
+            //             {
+
+            //                 Value = ((final.Select(pid => pid.ProductID)).FirstOrDefault()).ToString(),
+            //                 Text = final.Key.Color.ToString()
+            //             }).ToList();
+
+            var colors =
+                            (from ProductDiscription in db.ProductDiscriptions
+                             where ProductDiscription.ProductID == id
+                             group ProductDiscription by new { ProductDiscription.Color }
+                            into g
+                             select new SelectListItem
+                             {
+                                 Value = g.Key.Color,
+                                 Text = g.Key.Color
+                             }).ToList();
 
             var name =
                             (from products in db.Products
-                            where products.ProductID == id     
-                            select products.ProductName).Single();
+                             where products.ProductID == id
+                             select products.ProductName).Single();
 
             Session.Add("color", colors);
             Session.Add("name", name);
+            Session.Add("id", id);
 
-            return View(new aProductsDetails());
+            return View(new InvoiceItem());
         }
 
-        // POST: Store/AddToCart
-        [HttpPost]
-        public ActionResult AddToCart(aProductsDetails selectedItem)
+        [Route("getSizeList/{color?}"), HttpGet]
+        public ActionResult getSizeList(string id)
         {
-
-            try
-            {
-                cart[cart.Count()] = new Cart();
-                cart[cart.Count()].DiscriptionID = selectedItem.DiscriptionID;
-                cart[cart.Count()].ProductID = selectedItem.ProductID;
-                cart[cart.Count()].Color = selectedItem.Color;
-                cart[cart.Count()].Size = selectedItem.Color;
-                cart[cart.Count()].RetailPrice = selectedItem.RetailPrice;
-                cart[cart.Count()].Product.ProductID = selectedItem.Product.ProductID;
-                cart[cart.Count()].Product.ProductName = selectedItem.Product.ProductName;
-
-                return RedirectToAction("Index","Cart");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Store/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Store/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Store/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Store/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        [Route("getSizeList/{id?}/{color?}"), HttpGet]
-        public ActionResult getSizeList(string id, string color)
-        {
-            var ID = new Guid(id);
+            var ID = (Guid)Session["id"];
             var size = db.ProductDiscriptions
-                         .Where(pd => pd.ProductID == ID && pd.Color == color)
-                         .Select(pd => new SelectListItem
-                         {
-                             Value = pd.DiscriptionID.ToString(),
-                             Text = pd.Size
-                         }).ToList();
+             .Where(pd => pd.ProductID == ID && pd.Color == id)
+             .GroupBy(c => new { c.Size })
+             .Select(final => new SelectListItem
+             {
+
+                 Value = final.Key.Size,
+                 Text = final.Key.Size
+             }).ToList();
 
             return Json(size, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("getSizeList/{color?}"), HttpGet]
+        public ActionResult getPrice(string id, string size)
+        {
+            var ID = (Guid)Session["id"];
+            var price = db.ProductDiscriptions
+             .Where(pd => pd.ProductID == ID && pd.Color == id && pd.Size == size)
+             .GroupBy(c => new { c.Size })
+             .Select(final => new SelectListItem
+             {
+
+                 Value = final.Key.Size,
+                 Text = final.Key.Size
+             }).ToList();
+
+            return Json(price, JsonRequestBehavior.AllowGet);
         }
     }
 }
