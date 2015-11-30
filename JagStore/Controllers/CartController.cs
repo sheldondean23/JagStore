@@ -1,6 +1,7 @@
-﻿using JagStore.Models;
+﻿using Jagstore;
+using JagStore.Models.db;
 using JagStore.Models.Connector;
-using NHibernate;
+//using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace JagStore.Controllers
     public class CartController : Controller
     {
         private JagStoreContext db = new JagStoreContext();
-        private readonly ISession _session;
+        //private readonly ISession _session;
         //public CartController()
         //{ }
         //    public CartController(ISession session)

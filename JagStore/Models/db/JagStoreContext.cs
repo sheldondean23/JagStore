@@ -1,4 +1,4 @@
-namespace JagStore
+namespace JagStore.Models.db
 {
     using System;
     using System.Data.Entity;
@@ -43,17 +43,8 @@ namespace JagStore
                 .IsFixedLength();
 
             modelBuilder.Entity<Invoice>()
-                .Property(e => e.ShippingCost)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Invoice>()
                 .Property(e => e.TotalDue)
                 .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Invoice>()
-                .HasMany(e => e.InvoiceItems);
-                //.WithRequired(e => e.Invoice)
-                //.WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Invoices)

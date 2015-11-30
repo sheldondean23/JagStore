@@ -1,10 +1,9 @@
-﻿using JagStore.Models;
-using NHibernate;
+﻿using JagStore.Models.db;
+//using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using ProductDiscription = JagStore.ProductDiscription;
 
 namespace JagStore.Controllers
 {

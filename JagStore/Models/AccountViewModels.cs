@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace JagStore.Models
+namespace Jagstore.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

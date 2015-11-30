@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using JagStore.Models;
+using Jagstore.Models;
 
-namespace JagStore
+namespace Jagstore
 {
     public class EmailService : IIdentityMessageService
     {

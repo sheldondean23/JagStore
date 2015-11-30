@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JagStore", "JagStore\JagStore.csproj", "{2373DD5C-D7ED-4211-915C-5F67CADDA152}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JagStore", "Jagstore\JagStore.csproj", "{2CCBFC9E-2FA0-483C-8DA8-FE1353AE150F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2373DD5C-D7ED-4211-915C-5F67CADDA152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2373DD5C-D7ED-4211-915C-5F67CADDA152}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2373DD5C-D7ED-4211-915C-5F67CADDA152}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2373DD5C-D7ED-4211-915C-5F67CADDA152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CCBFC9E-2FA0-483C-8DA8-FE1353AE150F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CCBFC9E-2FA0-483C-8DA8-FE1353AE150F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CCBFC9E-2FA0-483C-8DA8-FE1353AE150F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CCBFC9E-2FA0-483C-8DA8-FE1353AE150F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

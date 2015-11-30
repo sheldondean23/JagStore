@@ -1,4 +1,4 @@
-namespace JagStore
+namespace JagStore.Models.db
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,6 @@ namespace JagStore
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            InvoiceItems = new HashSet<InvoiceItem>();
             ProductDiscriptions = new HashSet<ProductDiscription>();
         }
 
@@ -21,9 +20,6 @@ namespace JagStore
         [Required]
         [StringLength(75)]
         public string ProductName { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductDiscription> ProductDiscriptions { get; set; }

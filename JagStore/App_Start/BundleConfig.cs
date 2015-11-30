@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace JagStore
+namespace Jagstore
 {
     public class BundleConfig
     {

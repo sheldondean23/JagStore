@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using JagStore.Models;
+using Jagstore.Models;
 
-namespace JagStore
+namespace Jagstore
 {
     public partial class Startup
     {

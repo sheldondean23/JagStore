@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2373DD5C-D7ED-4211-915C-5F67CADDA152}</ProjectGuid>
+    <ProjectGuid>{2CCBFC9E-2FA0-483C-8DA8-FE1353AE150F}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JagStore</RootNamespace>
-    <AssemblyName>JagStore</AssemblyName>
+    <RootNamespace>Jagstore</RootNamespace>
+    <AssemblyName>Jagstore</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -44,30 +44,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\..\..\Desktop\New folder (2)\MultipleLoggers\bin\Debug\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Transactions">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -183,34 +169,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Mapping\Company.cs">
-      <DependentUpon>Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Mapping\Invoice.cs">
-      <DependentUpon>Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mapping\InvoiceItem.cs">
-      <DependentUpon>Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mapping\Mapping.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Mapping.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mapping\Mapping.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mapping\Mapping.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Mapping.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Connector\Cart.cs" />
     <Compile Include="Models\db\Company.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StoreControllerController.cs" />
@@ -221,29 +182,16 @@
     <Compile Include="Models\db\InvoiceItem.cs" />
     <Compile Include="Models\db\JagStoreContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Connector\Cart.cs" />
     <Compile Include="Models\Connector\dbConnector.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\db\Person.cs" />
     <Compile Include="Models\db\Product.cs" />
     <Compile Include="Models\db\ProductDiscription.cs" />
-    <Compile Include="NHibernate\NHibernateHelper.cs" />
-    <Compile Include="NHibernate\SessionHelper.cs" />
-    <Compile Include="Mapping\Person.cs">
-      <DependentUpon>Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mapping\Product.cs">
-      <DependentUpon>Mapping.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mapping\ProductDiscription.cs">
-      <DependentUpon>Mapping.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\db\Startup.cs" />
     <Compile Include="Models\db\sysdiagram.cs" />
-    <Compile Include="Mapping\sysdiagram.cs">
-      <DependentUpon>Mapping.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\JagStore.mdf" />
@@ -255,16 +203,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Mapping\Mapping.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Mapping.edmx</DependentUpon>
-      <LastGenOutput>Mapping.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Mapping\Mapping.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Mapping.edmx</DependentUpon>
-      <LastGenOutput>Mapping.cs</LastGenOutput>
-    </Content>
     <Content Include="Pictures\CanNotBeFound.gif" />
     <Content Include="Pictures\Hoodie.gif" />
     <Content Include="Pictures\newjaglarge.jpg" />
@@ -273,13 +211,6 @@
     <Content Include="Pictures\Shorts.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Mapping\Mapping.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Mapping.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Mapping\Mapping.edmx.diagram">
-      <DependentUpon>Mapping.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\detailsDropDownList.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -293,9 +224,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -329,16 +258,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Store\Index.cshtml" />
-    <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Cart\_Edit.cshtml" />
-    <Content Include="Views\Cart\_Details.cshtml" />
     <Content Include="Views\Cart\_Delete.cshtml" />
+    <Content Include="Views\Cart\_Details.cshtml" />
+    <Content Include="Views\Cart\_Edit.cshtml" />
+    <Content Include="Views\Store\Details.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -347,7 +274,6 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -364,9 +290,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>18360</DevelopmentServerPort>
+          <DevelopmentServerPort>6819</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18360/</IISUrl>
+          <IISUrl>http://localhost:6819/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,4 +1,4 @@
-namespace JagStore
+namespace JagStore.Models.db
 {
     using System;
     using System.Collections.Generic;

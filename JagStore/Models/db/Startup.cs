@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(JagStore.Startup))]
-namespace JagStore
+[assembly: OwinStartupAttribute(typeof(Jagstore.Startup))]
+namespace Jagstore
 {
     public partial class Startup
     {

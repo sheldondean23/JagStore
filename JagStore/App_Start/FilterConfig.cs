@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace JagStore
+namespace Jagstore
 {
     public class FilterConfig
     {

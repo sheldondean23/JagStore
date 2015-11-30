@@ -1,4 +1,4 @@
-namespace JagStore
+namespace JagStore.Models.db
 {
     using System;
     using System.Collections.Generic;
@@ -10,9 +10,9 @@ namespace JagStore
     {
         public Guid InvoiceItemID { get; set; }
 
-        public int InvoiceID { get; set; }
+        public int? InvoiceID { get; set; }
 
-        public Guid? Product { get; set; }
+        public Guid Product { get; set; }
 
         public int Quantity { get; set; }
 

@@ -1,4 +1,4 @@
-namespace JagStore
+namespace JagStore.Models.db
 {
     using System;
     using System.Collections.Generic;
@@ -48,12 +48,6 @@ namespace JagStore
         [Required]
         [StringLength(10)]
         public string ShippingZip { get; set; }
-
-        [StringLength(500)]
-        public string ShippingTerms { get; set; }
-
-        [Column(TypeName = "money")]
-        public decimal ShippingCost { get; set; }
 
         [Column(TypeName = "money")]
         public decimal TotalDue { get; set; }
