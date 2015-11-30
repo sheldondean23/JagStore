@@ -47,24 +47,23 @@ namespace JagStore.Controllers
             //                 Text = final.Key.Color.ToString()
             //             }).ToList();
 
-            var colors =
+            Session["Pickcolor"] =
                             (from ProductDiscription in db.ProductDiscriptions
                              where ProductDiscription.ProductID == id
                              group ProductDiscription by new { ProductDiscription.Color }
-                            into g
+                             into g
                              select new SelectListItem
                              {
                                  Value = g.Key.Color,
                                  Text = g.Key.Color
                              }).ToList();
 
-            var name =
+            Session["name"] =
                             (from products in db.Products
                              where products.ProductID == id
                              select products.ProductName).Single();
 
-            Session.Add("color", colors);
-            Session.Add("name", name);
+            Session.Remove("id");
             Session.Add("id", id);
 
             return View(new InvoiceItem());

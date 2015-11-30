@@ -208,7 +208,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Mapping.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Connector\Cart.cs" />
     <Compile Include="Models\db\Company.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -221,7 +221,7 @@
     <Compile Include="Models\db\InvoiceItem.cs" />
     <Compile Include="Models\db\JagStoreContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\dbConnector.cs" />
+    <Compile Include="Models\Connector\dbConnector.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\db\Person.cs" />
@@ -265,7 +265,12 @@
       <DependentUpon>Mapping.edmx</DependentUpon>
       <LastGenOutput>Mapping.cs</LastGenOutput>
     </Content>
+    <Content Include="Pictures\CanNotBeFound.gif" />
+    <Content Include="Pictures\Hoodie.gif" />
     <Content Include="Pictures\newjaglarge.jpg" />
+    <Content Include="Pictures\Polo.gif" />
+    <Content Include="Pictures\Shirt.gif" />
+    <Content Include="Pictures\Shorts.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Mapping\Mapping.edmx">
@@ -327,6 +332,9 @@
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\_Edit.cshtml" />
+    <Content Include="Views\Cart\_Details.cshtml" />
+    <Content Include="Views\Cart\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

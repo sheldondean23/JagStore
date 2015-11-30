@@ -3,16 +3,38 @@
 
 @{
     string name = (string)Session["name"];
-    List<SelectListItem> sizeList = new List<SelectListItem>();
+    var size = new List<SelectListItem>();
 }
 
-@using (Html.BeginForm("AddToCart", "Cart", new { selectedItem = Model }))
+@using (Html.BeginForm("AddToCart", "Cart", new { selectedItem = Model }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 <h2>@name</h2>
 
 <div class="form-horizontal">
     <h4>Product Discription</h4>
+    <span>
+        @{
+            switch (name)
+            {
+                case "Jag T-Shirt":
+                    <img src="~/Pictures/Shirt.gif" alt="Jag T-Shirt" height="100" width="100" />
+                    break;
+                case "Jag Shorts":
+                    <img src="~/Pictures/Shorts.gif" alt="Jag Shorts" height="100" width="100" />
+                    break;
+                case "Jag Polo":
+                    <img src="~/Pictures/Polo.gif" alt="Jag Shorts" height="100" width="100" />
+                    break;
+                case "Hoodie":
+                    <img src="~/Pictures/Hoodie.gif" alt="Jag Hoodie" height="100" width="100" />
+                    break;
+                default:
+                    <img src="~/Pictures/CanNotBeFound.gif" alt="Image Not Found" height="100" width="100" />
+                    break;
+            }
+        }
+    </span> 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -25,7 +47,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ProductDiscription.Color, "Color", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.ProductDiscription.Color, (List<SelectListItem>)Session["color"], "-- Select Color--", new { id = "colorSelect", @class = "form-control" })
+            @Html.DropDownListFor(model => model.ProductDiscription.Color, (List<SelectListItem>)Session["Pickcolor"], "-- Select Color--", new { id = "colorSelect", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ProductDiscription.Color, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -33,7 +55,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ProductDiscription.Size, "Size", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10" id="fill" data-get-size-list-url="@Url.Action("getSizeList")">
-            @Html.DropDownListFor(model => model.ProductDiscription.Size, sizeList, "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })
+            @Html.DropDownListFor(model => model.ProductDiscription.Size, size, "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ProductDiscription.Size, "", new { @class = "text-danger" })
         </div>
     </div>

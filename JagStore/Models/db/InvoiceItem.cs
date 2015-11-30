@@ -12,7 +12,7 @@ namespace JagStore
 
         public int InvoiceID { get; set; }
 
-        public Guid Product { get; set; }
+        public Guid? Product { get; set; }
 
         public int Quantity { get; set; }
 

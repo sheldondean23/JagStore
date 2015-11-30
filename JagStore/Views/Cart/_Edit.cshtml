@@ -1,0 +1,49 @@
+﻿@model JagStore.InvoiceItem
+
+@{  
+    string name = (string)Session["name"];
+ }
+@using (Html.BeginForm("Edit", "Cart", new { editedItem = Model }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@name</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.InvoiceItemID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDiscription.Product.ProductName, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.ProductDiscription.Product.ProductName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDiscription.Color, "Color", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ProductDiscription.Color, (List<SelectListItem>)Session["changeColor"], "-- Select Color--", new { id = "colorSelect", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Product, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDiscription.Size, "Size", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ProductDiscription.Size, (List<SelectListItem>)Session["changeSize"], "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,54 @@
+﻿@model JagStore.InvoiceItem
+@{
+    string name = (string)Session["name"];
+}
+<div>
+    <h4>@name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDiscription.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDiscription.Product.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDiscription.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDiscription.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDiscription.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDiscription.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDiscription.RetailPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDiscription.RetailPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceItemID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
