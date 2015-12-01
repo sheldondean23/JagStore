@@ -28,16 +28,16 @@ namespace JagStore.Controllers
         }
 
         // GET: Cart/Details/5
-        public ActionResult Details(Guid id)
+        public ActionResult _Details(Guid id)
         {
             InvoiceItem Item = new InvoiceItem();
             Session.Remove("name");
 
             Item = db.InvoiceItems.Where(i => i.InvoiceItemID == id).Select(i => i).Single();
             Session["name"] =
-                            (from products in db.Products
-                             where products.ProductID == id
-                             select products.ProductName).Single();
+                            (from products in db.InvoiceItems
+                             where products.InvoiceItemID == id
+                             select products.ProductDiscription.Product.ProductName).Single();
 
             return View(Item);
         }
@@ -63,15 +63,16 @@ namespace JagStore.Controllers
         }
 
         // GET: Cart/Edit/5
-        public ActionResult Edit(Guid id)
+        public ActionResult _Edit(Guid id)
         {
             InvoiceItem editItem = new InvoiceItem();
             Session.Remove("name");
+            Guid pid = db.InvoiceItems.Where(pd => pd.InvoiceItemID == id).Select(pd => pd.ProductDiscription.Product.ProductID).Single();
 
             Session["changeColor"] =
-                           (from ProductDiscription in db.ProductDiscriptions
-                            where ProductDiscription.ProductID == id
-                            group ProductDiscription by new { ProductDiscription.Color }
+                           (from InvoiceItem in db.InvoiceItems
+                            where InvoiceItem.ProductDiscription.Product.ProductID == pid
+                            group InvoiceItem by new { InvoiceItem.ProductDiscription.Color }
                             into g
                             select new SelectListItem
                             {
@@ -79,9 +80,9 @@ namespace JagStore.Controllers
                                 Text = g.Key.Color
                             }).ToList();
 
-            Session["changeSize"] = db.ProductDiscriptions
-                            .Where(pd => pd.ProductID == id)
-                            .GroupBy(c => new { c.Size })
+            Session["changeSize"] = db.InvoiceItems
+                            .Where(pd => pd.ProductDiscription.Product.ProductID == pid)
+                            .GroupBy(c => new { c.ProductDiscription.Size })
                             .Select(final => new SelectListItem
                             {
                                 Value = final.Key.Size,
@@ -104,7 +105,8 @@ namespace JagStore.Controllers
         [HttpPost]
         public ActionResult Edit(InvoiceItem cartEdit)
         {
-            cartEdit.ProductDiscription.ProductID = (Guid)Session["id"];
+            Guid id = (Guid)Session["id"];
+            cartEdit.ProductDiscription.ProductID = db.InvoiceItems.Where(pd => pd.InvoiceItemID == id).Select(pd => pd.ProductDiscription.Product.ProductID).Single();
             var product = db.ProductDiscriptions
                          .Where(pd => pd.ProductID == cartEdit.ProductDiscription.ProductID && pd.Size == cartEdit.ProductDiscription.Size && pd.Color == cartEdit.ProductDiscription.Color)
                          .Select(pd => pd.DiscriptionID).Single();
@@ -122,16 +124,16 @@ namespace JagStore.Controllers
         }
 
         // GET: Cart/Delete/5
-        public ActionResult Delete(Guid id)
+        public ActionResult _Delete(Guid id)
         {
             InvoiceItem deleteItem = new InvoiceItem();
             Session.Remove("name");
 
             deleteItem = db.InvoiceItems.Where(i => i.InvoiceItemID == id).Select(i => i).Single();
             Session["name"] =
-                            (from products in db.Products
-                             where products.ProductID == id
-                             select products.ProductName).Single();
+                            (from products in db.InvoiceItems
+                             where products.InvoiceItemID == id
+                             select products.ProductDiscription.Product.ProductName).Single();
 
             return View(deleteItem);
         }

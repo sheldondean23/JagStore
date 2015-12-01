@@ -8,11 +8,15 @@
 
 <p>
     @Html.ActionLink("Keep Shopping", "Index", "Store")
+    @Html.ActionLink("Check Out", "Index", "CheckOut")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Invoice.UserID)
+           
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductDiscription.Product.ProductName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProductDiscription.Color)
@@ -27,7 +31,29 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Invoice.UserID)
+                @{
+                    switch (item.ProductDiscription.Product.ProductName)
+                    {
+                        case "Jag T-Shirt":
+                            <img src="~/Pictures/Shirt.gif" alt="Jag T-Shirt" height="100" width="100" />
+                            break;
+                        case "Jag Shorts":
+                            <img src="~/Pictures/Shorts.gif" alt="Jag Shorts" height="100" width="100" />
+                            break;
+                        case "Jag Polo":
+                            <img src="~/Pictures/Polo.gif" alt="Jag Shorts" height="100" width="100" />
+                            break;
+                        case "Hoodie":
+                            <img src="~/Pictures/Hoodie.gif" alt="Jag Hoodie" height="100" width="100" />
+                            break;
+                        default:
+                            <img src="~/Pictures/CanNotBeFound.gif" alt="Image Not Found" height="100" width="100" />
+                            break;
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDiscription.Product.ProductName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductDiscription.Color)
@@ -36,8 +62,9 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceItemID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.InvoiceItemID }) |
+                @Html.ActionLink("Edit", "_Edit", new { id = item.InvoiceItemID }) | 
+                @Html.ActionLink("Details", "_Details", new { id = item.InvoiceItemID }) | 
+                @Html.ActionLink("Delete", "_Delete", new { id = item.InvoiceItemID })
             </td>
         </tr>
     }

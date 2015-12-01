@@ -12,5 +12,5 @@ namespace JagStore.Models.Connector
     {
         public SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["JagStoreContext"].ConnectionString);
         public int rowsAffected;
-    }
+    }    
 }

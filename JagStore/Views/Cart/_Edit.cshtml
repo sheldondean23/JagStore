@@ -9,6 +9,28 @@
 
     <div class="form-horizontal">
         <h4>@name</h4>
+        <span>
+            @{
+                switch (name)
+                {
+                    case "Jag T-Shirt":
+                        <img src="~/Pictures/Shirt.gif" alt="Jag T-Shirt" height="100" width="100" />
+                        break;
+                    case "Jag Shorts":
+                        <img src="~/Pictures/Shorts.gif" alt="Jag Shorts" height="100" width="100" />
+                        break;
+                    case "Jag Polo":
+                        <img src="~/Pictures/Polo.gif" alt="Jag Shorts" height="100" width="100" />
+                        break;
+                    case "Hoodie":
+                        <img src="~/Pictures/Hoodie.gif" alt="Jag Hoodie" height="100" width="100" />
+                        break;
+                    default:
+                        <img src="~/Pictures/CanNotBeFound.gif" alt="Image Not Found" height="100" width="100" />
+                        break;
+                }
+            }
+        </span> 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.InvoiceItemID)
@@ -32,7 +54,22 @@
             @Html.LabelFor(model => model.ProductDiscription.Size, "Size", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.ProductDiscription.Size, (List<SelectListItem>)Session["changeSize"], "-- Select Size--", new { id = "sizeSelect", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductDiscription.Size, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, "Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="show" data-get-price-url="@Url.Action("getPrice")">
+            @Html.LabelFor(model => model.ProductDiscription.RetailPrice, "Price", htmlAttributes: new { id = "showPrice", @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.ProductDiscription.RetailPrice)
             </div>
         </div>
 

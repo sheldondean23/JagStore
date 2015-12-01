@@ -4,6 +4,28 @@
 }
 <div>
     <h4>@name</h4>
+    <span>
+        @{
+            switch (name)
+            {
+                case "Jag T-Shirt":
+                    <img src="~/Pictures/Shirt.gif" alt="Jag T-Shirt" height="100" width="100" />
+                    break;
+                case "Jag Shorts":
+                    <img src="~/Pictures/Shorts.gif" alt="Jag Shorts" height="100" width="100" />
+                    break;
+                case "Jag Polo":
+                    <img src="~/Pictures/Polo.gif" alt="Jag Shorts" height="100" width="100" />
+                    break;
+                case "Hoodie":
+                    <img src="~/Pictures/Hoodie.gif" alt="Jag Hoodie" height="100" width="100" />
+                    break;
+                default:
+                    <img src="~/Pictures/CanNotBeFound.gif" alt="Image Not Found" height="100" width="100" />
+                    break;
+            }
+        }
+    </span> 
     <hr />
     <dl class="dl-horizontal">
         <dt>

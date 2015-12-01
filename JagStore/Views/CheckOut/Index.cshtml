@@ -1,0 +1,49 @@
+﻿@model IEnumerable<JagStore.Models.db.InvoiceItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Invoice.cshtml";
+}
+
+
+<table class="table">
+    <tr class="table-top">
+        <th>
+            Quantity
+        </th>
+        <th>
+            Item
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Unit Price
+        </th>
+        <th>
+            Amount
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductDiscription.Product.ProductName)
+        </td>
+        <td>
+            Color - @Html.DisplayFor(modelItem => item.ProductDiscription.Color) / Size - @Html.DisplayFor(modelItem => item.ProductDiscription.Size)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.ProductDiscription.RetailPrice)
+        </td>
+        <td>
+            @{ Html.ValueFor(modelItem => item.ProductDiscription.RetailPrice) * Html.ValueFor(modelItem => item.ProductDiscription.QuantityInStock); }
+        </td>
+    </tr>
+}
+
+</table>

@@ -169,6 +169,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Models\db\Company.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -206,7 +207,7 @@
     <Content Include="Pictures\CanNotBeFound.gif" />
     <Content Include="Pictures\Hoodie.gif" />
     <Content Include="Pictures\newjaglarge.jpg" />
-    <Content Include="Pictures\Polo.gif" />
+    <Content Include="Pictures\Jag Polo.gif" />
     <Content Include="Pictures\Shirt.gif" />
     <Content Include="Pictures\Shorts.gif" />
     <Content Include="Scripts\bootstrap.js" />
@@ -264,6 +265,8 @@
     <Content Include="Views\Cart\_Edit.cshtml" />
     <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\Shared\_Invoice.cshtml" />
+    <Content Include="Views\CheckOut\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
