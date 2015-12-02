@@ -26,13 +26,19 @@ namespace Jagstore.Controllers
 
             Session.Add("totals", totals);
             Receipt receipt = new Receipt();
-            //receipt.Create(db.People.Select(p => p.UserID).Single(), 
+            //receipt.Create(db.People.Select(p => p.UserID).Single(),
             //               db.Companies.Select(c => c.AddressLine1).Single(),
             //               db.Companies.Select(c => c.City).Single(),
             //               db.Companies.Select(c => c.StateCode).Single(),
             //               db.Companies.Select(c => c.Zip).Single(),
             //               Convert.ToDecimal(totals.SubTotal())
             //               );
+            Session["companyName"] = db.Companies
+                                     .Select(c => c.CompanyName).Single();
+            ViewBag.InvoiceDate = db.Invoices.Select(i => i.InvoiceDate).Single();
+            ViewBag.InvoiceID = db.Invoices.Select(i => i.InvoiceID).Single();
+            ViewBag.Address = db.Invoices.Select(i => i.ShippingAddressLine1).Single();
+            ViewBag.CityState = (db.Invoices.Select(i => i.ShippingCity).Single() + ", " + db.Invoices.Select(i => i.ShippingState).Single() + " " + db.Invoices.Select(i => i.ShippingZip).Single());
 
             return View(db.InvoiceItems);
         }

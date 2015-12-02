@@ -3,13 +3,34 @@
 
 @{
     Total totals = (Total)Session["totals"];
+    var Company = (string)Session["companyName"];
     Layout = "~/Views/Shared/_Invoice.cshtml";
     int count = 0;
 }
+@Styles.Render("~/Content/Invoice.css")
+<div class="blue right large">
+    INVOICE
+    <hr>
+</div>
 <div>
-    <div>
-        @Html
-    </div>
+    <strong>Shellman LLC, LLC</strong> <br>
+    700 University Blvd. <br>
+    Suite 77 <br>
+    Mobile, AL 36688 <br>
+    Phone: 777.555.7777    Fax: 251.777.7777 <br>
+    Email: ShellmanHelp@usouthal.edu  Web: shop.shellman.net<br>
+    <span class="right"><img src="~/Pictures/newjaglarge.jpg" alt="Jag T-Shirt" height="200" width="200" /></span>
+</div>
+<hr>
+<div>
+        @ViewBag.InvoiceDate <br>
+        <br>
+        <strong>Invoice NO.: </strong>@ViewBag.InvoiceID<br>
+        To:<br>
+        <strong>@Company </strong><br>
+        @ViewBag.Address<br>
+        @ViewBag.CityState
+    <br><br>
 </div>
 
 <table class="table">
@@ -90,4 +111,4 @@
         <td>@totals.SubTotal()</td>
     </tr>
 </table>
-<div>Make all checks payable to</div>
+<div class="text-center">Make all checks payable to Shellman LLC</div>
