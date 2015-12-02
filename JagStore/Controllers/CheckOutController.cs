@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Jagstore.Models;
+using Jagstore.Models.Connector;
+using JagStore.Models.db;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +11,30 @@ namespace Jagstore.Controllers
 {
     public class CheckOutController : Controller
     {
+        private JagStoreContext db = new JagStoreContext();
         // GET: CheckOut
         public ActionResult Index()
         {
-            return View();
+            Total totals = new Total();
+            int count = 0;
+
+            foreach (var item in db.InvoiceItems)
+            {
+                totals.Value[count] = Convert.ToDouble(item.Quantity * item.ProductDiscription.RetailPrice);
+                count++;
+            }
+
+            Session.Add("totals", totals);
+            Receipt receipt = new Receipt();
+            //receipt.Create(db.People.Select(p => p.UserID).Single(), 
+            //               db.Companies.Select(c => c.AddressLine1).Single(),
+            //               db.Companies.Select(c => c.City).Single(),
+            //               db.Companies.Select(c => c.StateCode).Single(),
+            //               db.Companies.Select(c => c.Zip).Single(),
+            //               Convert.ToDecimal(totals.SubTotal())
+            //               );
+
+            return View(db.InvoiceItems);
         }
 
         // GET: CheckOut/Details/5

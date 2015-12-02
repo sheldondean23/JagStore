@@ -2,6 +2,10 @@
 @{
     string name = (string)Session["name"];
 }
+@using (Html.BeginForm("Delete", "Cart", new { id = Model.InvoiceItemID }))
+{
+    @Html.AntiForgeryToken()
+
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>@name</h4>
@@ -71,12 +75,10 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
-    }
+    
 </div>
+}

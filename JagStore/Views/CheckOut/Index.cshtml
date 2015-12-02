@@ -1,10 +1,16 @@
 ﻿@model IEnumerable<JagStore.Models.db.InvoiceItem>
+@using Jagstore.Models;
 
 @{
-    ViewBag.Title = "Index";
+    Total totals = (Total)Session["totals"];
     Layout = "~/Views/Shared/_Invoice.cshtml";
+    int count = 0;
 }
-
+<div>
+    <div>
+        @Html
+    </div>
+</div>
 
 <table class="table">
     <tr class="table-top">
@@ -27,6 +33,7 @@
 
 @foreach (var item in Model)
 {
+
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Quantity)
@@ -41,9 +48,46 @@
             $@Html.DisplayFor(modelItem => item.ProductDiscription.RetailPrice)
         </td>
         <td>
-            @{ Html.ValueFor(modelItem => item.ProductDiscription.RetailPrice) * Html.ValueFor(modelItem => item.ProductDiscription.QuantityInStock); }
+            @Html.DisplayFor(modelItem => totals.Value[count])
         </td>
     </tr>
+    count++;
 }
-
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+<tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Subtotal</td>
+        <td>@totals.Value.Sum()</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Sales Tax</td>
+        <td>@totals.Tax()</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Shipping & Handling</td>
+        <td>Free</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total Due</td>
+        <td>@totals.SubTotal()</td>
+    </tr>
 </table>
+<div>Make all checks payable to</div>

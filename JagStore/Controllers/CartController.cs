@@ -140,12 +140,12 @@ namespace JagStore.Controllers
 
         // POST: Cart/Delete/5
         [HttpPost]
-        public ActionResult Delete(InvoiceItem cartDelete)
+        public ActionResult Delete( Guid id)
         {
             Cart connector = new Cart();
             try
             {
-                connector.Delete(cartDelete.InvoiceItemID);
+                connector.Delete(id);
 
                 return RedirectToAction("Index");
             }
